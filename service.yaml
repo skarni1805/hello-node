@@ -7,7 +7,7 @@ spec:
   template:
     spec:
       containers:
-        - image: docker.io/jkeam/hello-node
+        - image: docker.io/jonnyman9/hello-node
           env:
             - name: TARGET
               value: "Node"
