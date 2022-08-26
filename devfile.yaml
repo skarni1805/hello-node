@@ -8,14 +8,6 @@ projects:
         origin: "https://github.com/jkeam/hello-node.git"
       checkoutFrom:
         revision: main
-attributes:
-  .vscode/extensions.json: |
-    {
-      "recommendations": [
-        "vscode.typescript-language-features",
-        "ms-vscode.js-debug"
-      ]
-    }
 components:
   - attributes:
       app.kubernetes.io/name: tools
