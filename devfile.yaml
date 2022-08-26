@@ -15,21 +15,17 @@ components:
         - 'relative:extension/resources/github_com/redhat-developer/devspaces-vscode-extensions/releases/download/v2cebc1e/typescript-language-features-1.49.3.vsix'
         - 'relative:extension/resources/open-vsx_org/api/ms-vscode/js-debug/1_66_0/file/ms-vscode.js-debug-1.66.0.vsix'
     container:
-      args:
-        - sh
-        - '-c'
-        - '${PLUGIN_REMOTE_ENDPOINT_EXECUTABLE}'
       endpoints:
         - name: nodejs
           exposure: public
           protocol: http
           targetPort: 8080
           secure: false
-      env:
-        - name: PLUGIN_REMOTE_ENDPOINT_EXECUTABLE
-          value: /remote-endpoint/plugin-remote-endpoint
       image: 'registry.redhat.io/devspaces/udi-rhel8@sha256:d55549aad15742f6f7310da0c7abc1e65dd5d3ad2e3efb8fbf414cf91b9efac7'
       memoryLimit: 1G
+      cpuLimit: 4000m
+      mountSources: true
+      command: ["sleep", "infinity"]
     name: tools
 commands:
   - exec:
