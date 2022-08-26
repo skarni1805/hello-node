@@ -8,37 +8,20 @@ projects:
         origin: "https://github.com/jkeam/hello-node.git"
       checkoutFrom:
         revision: main
+attributes:
+  .vscode/extensions.json: |
+    {
+      "recommendations": [
+        "vscode.typescript-language-features",
+        "ms-vscode.js-debug"
+      ]
+    }
 components:
   - attributes:
       app.kubernetes.io/name: tools
       che-theia.eclipse.org/vscode-extensions:
         - 'relative:extension/resources/github_com/redhat-developer/devspaces-vscode-extensions/releases/download/v2cebc1e/typescript-language-features-1.49.3.vsix'
         - 'relative:extension/resources/open-vsx_org/api/ms-vscode/js-debug/1_66_0/file/ms-vscode.js-debug-1.66.0.vsix'
-      .vscode/extensions.json: |-
-        {
-          "recommendations": [
-            "vscode.typescript-language-features",
-            "ms-vscode.js-debug"
-          ]
-        }
-      .vscode/launch.json: |-
-        {
-          "version": "0.2.0",
-          "configurations": [
-            {
-              "address": "localhost",
-              "localRoot": "${workspaceFolder}",
-              "name": "Attach to Remote",
-              "port": 9229,
-              "remoteRoot": "Absolute path to the remote directory containing the program",
-              "request": "attach",
-              "skipFiles": [
-                "<node_internals>/**"
-              ],
-              "type": "pwa-node"
-            }
-          ]
-        }
     container:
       endpoints:
         - name: nodejs
