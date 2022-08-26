@@ -20,10 +20,11 @@ components:
         - '-c'
         - '${PLUGIN_REMOTE_ENDPOINT_EXECUTABLE}'
       endpoints:
-        - exposure: public
-          name: nodejs
+        - name: nodejs
+          exposure: public
           protocol: http
           targetPort: 8080
+          secure: false
       image: 'registry.redhat.io/devspaces/udi-rhel8@sha256:d55549aad15742f6f7310da0c7abc1e65dd5d3ad2e3efb8fbf414cf91b9efac7'
       memoryLimit: 1G
     name: tools
