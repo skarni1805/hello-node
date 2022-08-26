@@ -1,2 +1,2 @@
 # Hello Node
-Simple Hello World app in Node v12
+Simple Hello World app in Node v16
