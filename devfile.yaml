@@ -26,7 +26,13 @@ components:
       cpuLimit: 4000m
       mountSources: true
       command: ["sleep", "infinity"]
+      volumeMounts:
+        - name: npm
+          path: /home/user/.npm
     name: tools
+  - name: npm
+    volume:
+      size: 1G
 commands:
   - exec:
       commandLine: npm install
@@ -34,7 +40,7 @@ commands:
       group:
         kind: build
       label: Download dependencies
-      workingDir: '${PROJECTS_ROOT}/hello-node/app'
+      workingDir: '${PROJECTS_ROOT}/hello-node'
     id: install-dependencies
   - exec:
       commandLine: nodemon --inspect app.js
@@ -43,7 +49,7 @@ commands:
         isDefault: true
         kind: debug
       label: Run the web app (debugging enabled)
-      workingDir: '${PROJECTS_ROOT}/hello-node/app'
+      workingDir: '${PROJECTS_ROOT}/hello-node'
     id: run
   - exec:
       commandLine: 'node_server_pids=$(pgrep -fx ''.*nodemon (--inspect )?app.js'' | tr "\\n" " ") && echo "Stopping node server with PIDs: ${node_server_pids}" &&  kill -15 ${node_server_pids} &>/dev/null && echo ''Done.'''
