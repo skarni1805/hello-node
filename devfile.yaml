@@ -43,7 +43,7 @@ commands:
       workingDir: '${PROJECTS_ROOT}/hello-node'
     id: install-dependencies
   - exec:
-      commandLine: nodemon --inspect index.js
+      commandLine: nodemon --inspect app.js
       component: tools
       group:
         isDefault: true
@@ -52,7 +52,7 @@ commands:
       workingDir: '${PROJECTS_ROOT}/hello-node'
     id: run
   - exec:
-      commandLine: 'node_server_pids=$(pgrep -fx ''.*nodemon (--inspect )?index.js'' | tr "\\n" " ") && echo "Stopping node server with PIDs: ${node_server_pids}" &&  kill -15 ${node_server_pids} &>/dev/null && echo ''Done.'''
+      commandLine: 'node_server_pids=$(pgrep -fx ''.*nodemon (--inspect )?app.js'' | tr "\\n" " ") && echo "Stopping node server with PIDs: ${node_server_pids}" &&  kill -15 ${node_server_pids} &>/dev/null && echo ''Done.'''
       component: tools
       group:
         kind: run

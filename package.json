@@ -2,9 +2,9 @@
   "name": "hello-node",
   "version": "1.0.0",
   "description": "Hello World in Node",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node ./index.js",
+    "start": "node ./app.js",
     "test": "npx jest"
   },
   "repository": {
