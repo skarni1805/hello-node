@@ -1,0 +1,54 @@
+schemaVersion: 2.1.0
+metadata:
+  name: nodejs-hello
+projects:
+  - name: hello-node
+    git:
+      remotes:
+        origin: "https://github.com/jkeam/hello-node.git"
+      checkoutFrom:
+        revision: main
+components:
+  - attributes:
+      app.kubernetes.io/name: tools
+      che-theia.eclipse.org/vscode-extensions:
+        - 'relative:extension/resources/github_com/redhat-developer/devspaces-vscode-extensions/releases/download/v2cebc1e/typescript-language-features-1.49.3.vsix'
+        - 'relative:extension/resources/open-vsx_org/api/ms-vscode/js-debug/1_66_0/file/ms-vscode.js-debug-1.66.0.vsix'
+    container:
+      args:
+        - sh
+        - '-c'
+        - '${PLUGIN_REMOTE_ENDPOINT_EXECUTABLE}'
+      endpoints:
+        - exposure: public
+          name: nodejs
+          protocol: http
+          targetPort: 8080
+      image: 'registry.redhat.io/devspaces/udi-rhel8@sha256:d55549aad15742f6f7310da0c7abc1e65dd5d3ad2e3efb8fbf414cf91b9efac7'
+      memoryLimit: 1G
+    name: tools
+commands:
+  - exec:
+      commandLine: npm install
+      component: tools
+      group:
+        kind: build
+      label: Download dependencies
+      workingDir: '${PROJECTS_ROOT}/hello-node/app'
+    id: install-dependencies
+  - exec:
+      commandLine: nodemon --inspect app.js
+      component: tools
+      group:
+        isDefault: true
+        kind: debug
+      label: Run the web app (debugging enabled)
+      workingDir: '${PROJECTS_ROOT}/hello-node/app'
+    id: run
+  - exec:
+      commandLine: 'node_server_pids=$(pgrep -fx ''.*nodemon (--inspect )?app.js'' | tr "\\n" " ") && echo "Stopping node server with PIDs: ${node_server_pids}" &&  kill -15 ${node_server_pids} &>/dev/null && echo ''Done.'''
+      component: tools
+      group:
+        kind: run
+      label: Stop the web app
+    id: stop
