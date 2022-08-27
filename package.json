@@ -19,7 +19,10 @@
   "author": "Jon Keam <jpkeam@gmail.com> (http://jonkeam.com)",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.18.1",
-    "jest": "^29.0.1"
+    "express": "^4.18.1"
+  },
+  "devDependencies" : {
+    "jest": "^29.0.1",
+    "supertest": "6.2.4"
   }
 }
