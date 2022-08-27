@@ -51,14 +51,6 @@ commands:
       workingDir: '${PROJECTS_ROOT}/hello-node'
     id: test
   - exec:
-      commandLine: node --inspect-brk node_modules/.bin/jest --runInBand
-      component: tools
-      group:
-        kind: test
-      label: Run tests with debugger
-      workingDir: '${PROJECTS_ROOT}/hello-node'
-    id: test-debug
-  - exec:
       commandLine: nodemon --inspect app.js
       component: tools
       group:

@@ -12,6 +12,24 @@
         "<node_internals>/**"
       ],
       "type": "pwa-node"
-     }
+    },
+    {
+        "name": "Debug App",
+        "type": "pwa-node",
+        "request": "launch",
+        "runtimeArgs": [
+          "${workspaceFolder}/app.js"
+        ]
+    },
+    {
+      "name": "Debug Tests",
+      "type": "pwa-node",
+      "request": "launch",
+      "runtimeArgs": [
+        "--inspect-brk",
+        "${workspaceRoot}/node_modules/.bin/jest",
+        "--runInBand"
+      ]
+    }
   ]
 }
