@@ -37,6 +37,7 @@ commands:
       commandLine: npm install
       component: tools
       group:
+        isDefault: true
         kind: build
       label: Download dependencies
       workingDir: '${PROJECTS_ROOT}/hello-node'
@@ -46,7 +47,7 @@ commands:
       component: tools
       group:
         isDefault: true
-        kind: debug
+        kind: run
       label: Run the web app (debugging enabled)
       workingDir: '${PROJECTS_ROOT}/hello-node'
     id: run
