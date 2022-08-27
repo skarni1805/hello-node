@@ -43,6 +43,14 @@ commands:
       workingDir: '${PROJECTS_ROOT}/hello-node'
     id: install-dependencies
   - exec:
+      commandLine: npm test
+      component: tools
+      group:
+        kind: test
+      label: Run tests
+      workingDir: '${PROJECTS_ROOT}/hello-node'
+    id: test
+  - exec:
       commandLine: nodemon --inspect app.js
       component: tools
       group:
